@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 1761;
+const PORT = process.env.PORT || 5000;
 
 // Middleware - Allow all origins and methods
 app.use(cors({
@@ -78,6 +78,12 @@ app.use('/api/investments', investmentRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'BlockchainBull API is running' });
 });
+app.get("/health",(req,res)=>{
+  res.status(200).json({
+    success: true,
+    message: "BlockchainBull API is running"
+  })
+})
 
 // Catch-all route for undefined routes
 app.use((req, res) => {
